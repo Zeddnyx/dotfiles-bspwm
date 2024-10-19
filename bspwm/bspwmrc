@@ -1,0 +1,30 @@
+#! /bin/sh
+
+bspc monitor eDP-1 -d I II III IV V VI
+bspc monitor HDMI-1 -d VII VIII IX X
+
+bspc config border_width         2
+bspc config focused_border_color  "#8ec07c"
+bspc config normal_border_color "#000"
+bspc config window_gap           5
+bspc config focus_follows_pointer false
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# xprop WM_CLASS  -- to see class
+
+bspc rule -a kitty desktop='^1'
+bspc rule -a qutebrowser desktop='^2'
+bspc rule -a Brave-browser='^2' follow=on
+bspc rule -a Postman desktop='^3'
+bspc rule -a TelegramDesktop desktop='^4'
+
+kitty &
+#~/.config/bspwm/wallpaper.sh
+# mpd &
+picom --config ~/.config/bspwm/picom.conf & 
+feh --bg-fill  ~/Wallpaper/gruv-abstract-maze.png
+# ~/.config/bspwm/polybar/launch.sh
+sxhkd -c "$HOME"/.config/bspwm/sxhkdrc &
